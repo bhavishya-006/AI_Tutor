@@ -267,7 +267,7 @@ function ChatWindow({ threadId }: { threadId: string }) {
                 )}
                 {error && (
                   <div className="rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive">
-                    Something went wrong. Please try again.
+                    {error.message || "Something went wrong. Please try again."}
                   </div>
                 )}
               </div>

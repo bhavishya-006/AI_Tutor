@@ -25,22 +25,38 @@ export const Route = createFileRoute("/api/chat")({
         if (!Array.isArray(messages)) {
           return new Response("Messages required", { status: 400 });
         }
-        const key = process.env.GEMINI_API_KEY;
-        if (!key) {
+        const key = process.env.GEMINI_API_KEY?.trim();
+        if (
+          !key ||
+          key.startsWith("AQ.") ||
+          key === "your_key_here" ||
+          key === "your_gemini_api_key_here"
+        ) {
           return new Response(
-            "Missing GEMINI_API_KEY. Create a Gemini API key and add it to your .env file.",
-            { status: 500 },
+            "Missing or invalid GEMINI_API_KEY. Please get a free API key from Google AI Studio (https://aistudio.google.com/) and configure GEMINI_API_KEY in your .env file.",
+            { status: 400 },
           );
         }
 
+        const modelName = process.env.GEMINI_MODEL || "gemini-1.5-flash";
         const gateway = createGeminiProvider(key);
         try {
           const result = streamText({
-            model: gateway("gemini-3-flash-preview"),
+            model: gateway(modelName),
             system: SYSTEM_PROMPT,
             messages: await convertToModelMessages(messages),
           });
-          return result.toUIMessageStreamResponse({ originalMessages: messages });
+          return result.toUIMessageStreamResponse({
+            originalMessages: messages,
+            onError: (err: unknown) => {
+              console.error("Gemini stream error:", err);
+              const msg = err instanceof Error ? err.message : String(err);
+              if (msg.includes("Invalid Auth key") || msg.includes("API key")) {
+                return "Invalid Google Gemini API key. Please get a free key from https://aistudio.google.com/ and set it in your .env file.";
+              }
+              return msg || "An error occurred with the AI service.";
+            },
+          });
         } catch (err) {
           console.error("chat error", err);
           return new Response("AI error", { status: 500 });
