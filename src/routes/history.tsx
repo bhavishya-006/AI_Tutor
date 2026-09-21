@@ -31,7 +31,10 @@ function HistoryPage() {
     <div className="min-h-screen bg-background">
       <div className="mx-auto max-w-3xl px-4 py-10">
         <div className="mb-6 flex items-center justify-between">
-          <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+          >
             <ArrowLeft className="h-4 w-4" /> Back to chat
           </Link>
           <Link
@@ -53,29 +56,33 @@ function HistoryPage() {
           />
           <div>
             <h1 className="text-2xl font-semibold tracking-tight">Chat History</h1>
-            <p className="text-sm text-muted-foreground">{threads.length} conversation{threads.length === 1 ? "" : "s"}</p>
+            <p className="text-sm text-muted-foreground">
+              {threads.length} conversation{threads.length === 1 ? "" : "s"}
+            </p>
           </div>
         </div>
 
         {threads.length === 0 ? (
           <div className="rounded-xl border border-dashed border-border p-10 text-center">
             <MessageSquare className="mx-auto mb-3 h-8 w-8 text-muted-foreground" />
-            <p className="text-sm text-muted-foreground">No conversations yet. Start your first chat.</p>
+            <p className="text-sm text-muted-foreground">
+              No conversations yet. Start your first chat.
+            </p>
           </div>
         ) : (
           <ul className="space-y-2">
             {threads.map((t) => {
-              const preview = t.messages
-                .slice(-1)
-                .map((m) => m.parts.map((p) => (p.type === "text" ? p.text : "")).join(""))
-                .join("") || "—";
+              const preview =
+                t.messages
+                  .slice(-1)
+                  .map((m) => m.parts.map((p) => (p.type === "text" ? p.text : "")).join(""))
+                  .join("") || "—";
               return (
-                <li key={t.id} className="group flex items-center gap-3 rounded-xl border border-border bg-card p-4 transition hover:border-primary/40">
-                  <Link
-                    to="/$threadId"
-                    params={{ threadId: t.id }}
-                    className="flex-1 min-w-0"
-                  >
+                <li
+                  key={t.id}
+                  className="group flex items-center gap-3 rounded-xl border border-border bg-card p-4 transition hover:border-primary/40"
+                >
+                  <Link to="/$threadId" params={{ threadId: t.id }} className="flex-1 min-w-0">
                     <div className="font-medium truncate">{t.title}</div>
                     <div className="text-xs text-muted-foreground truncate mt-0.5">{preview}</div>
                     <div className="text-[11px] text-muted-foreground/70 mt-1">

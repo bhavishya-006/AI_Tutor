@@ -5,7 +5,8 @@
 ![Maverick Tutor Logo](src/assets/bot-logo.png)
 
 ### **Next-Generation Multilingual AI Tutoring Platform**
-*Democratizing AI, Machine Learning, and Science Education in English, Hindi (हिन्दी), and Telugu (తెలుగు).*
+
+_Democratizing AI, Machine Learning, and Science Education in English, Hindi (हिन्दी), and Telugu (తెలుగు)._
 
 [![React](https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -62,13 +63,13 @@ flowchart TD
     User([👤 Learner]) -->|Selects / Types Query in EN, HI, TE| UI[💻 Maverick Tutor UI - React 19]
     UI -->|Stores Threads & Settings| LocalStore[(📦 LocalStorage: chat.v1 & settings.v1)]
     UI -->|POST /api/chat - Streaming Request| Server[⚡ TanStack Start / Nitro API Route]
-    
+
     subgraph AI Gateway
         Server -->|Enrich with STEM Knowledge Base| KB[(📚 knowledge.json)]
         KB --> Prompt[System Prompt + Context Builder]
         Prompt -->|StreamText Request| Gemini[🤖 Google Gemini Flash API]
     end
-    
+
     Gemini -->|Streamed SSE Response| Server
     Server -->|React AI SDK Stream| UI
     UI -->|Render Markdown & Code Blocks| User
@@ -78,16 +79,16 @@ flowchart TD
 
 ## 💻 Tech Stack
 
-| Domain | Technology | Description |
-| :--- | :--- | :--- |
-| **Frontend Framework** | [React 19](https://react.dev/) | Modern concurrent React architecture |
-| **Routing & Meta-framework** | [TanStack Router](https://tanstack.com/router) & [TanStack Start](https://tanstack.com/start) | Fully type-safe client & server routing |
-| **Styling & Design System** | [Tailwind CSS v4](https://tailwindcss.com/) + Radix UI primitives | High-performance CSS engine with glassmorphic accents |
-| **AI Orchestration** | [Vercel AI SDK](https://sdk.vercel.ai/) (`ai`, `@ai-sdk/react`, `@ai-sdk/openai-compatible`) | Robust hooks for streaming LLM responses |
-| **LLM Provider** | [Google Gemini](https://ai.google.dev/) (`gemini-3-flash-preview`) | Low-latency, high-accuracy multilingual reasoning |
-| **State & Persistence** | Custom LocalStorage Store | Instant client-side persistence for conversations & settings |
-| **Icons & UI Extras** | [Lucide React](https://lucide.dev/), [Sonner](https://sonner.emilkowal.ski/) | Clean, accessible iconography and fluid toast notifications |
-| **Build & Bundler** | [Vite 7](https://vitejs.dev/) | Rapid HMR and optimized production bundles |
+| Domain                       | Technology                                                                                    | Description                                                  |
+| :--------------------------- | :-------------------------------------------------------------------------------------------- | :----------------------------------------------------------- |
+| **Frontend Framework**       | [React 19](https://react.dev/)                                                                | Modern concurrent React architecture                         |
+| **Routing & Meta-framework** | [TanStack Router](https://tanstack.com/router) & [TanStack Start](https://tanstack.com/start) | Fully type-safe client & server routing                      |
+| **Styling & Design System**  | [Tailwind CSS v4](https://tailwindcss.com/) + Radix UI primitives                             | High-performance CSS engine with glassmorphic accents        |
+| **AI Orchestration**         | [Vercel AI SDK](https://sdk.vercel.ai/) (`ai`, `@ai-sdk/react`, `@ai-sdk/openai-compatible`)  | Robust hooks for streaming LLM responses                     |
+| **LLM Provider**             | [Google Gemini](https://ai.google.dev/) (`gemini-3-flash-preview`)                            | Low-latency, high-accuracy multilingual reasoning            |
+| **State & Persistence**      | Custom LocalStorage Store                                                                     | Instant client-side persistence for conversations & settings |
+| **Icons & UI Extras**        | [Lucide React](https://lucide.dev/), [Sonner](https://sonner.emilkowal.ski/)                  | Clean, accessible iconography and fluid toast notifications  |
+| **Build & Bundler**          | [Vite 7](https://vitejs.dev/)                                                                 | Rapid HMR and optimized production bundles                   |
 
 ---
 
@@ -183,7 +184,7 @@ AI_Tutor/
 
 Maverick Tutor provides a built-in `/settings` interface allowing users or administrators to tailor the experience:
 
-- **Display Identity**: Customize the bot name (default: *Maverick Tutor*) and upload custom avatar images (PNG/JPEG under 1MB converted to base64 Data URLs).
+- **Display Identity**: Customize the bot name (default: _Maverick Tutor_) and upload custom avatar images (PNG/JPEG under 1MB converted to base64 Data URLs).
 - **Color Palettes**: Live picker for primary accent color (default: `#7c5cff`) and chat canvas background (`#fcfbff`).
 - **Theme Modes**: Seamless toggling between **Light**, **Dark**, and **System** themes.
 - **Custom Greetings**: Tailor welcome messages for students or specific domain audiences.
@@ -196,14 +197,14 @@ All settings are stored in local storage under `chatbot.settings.v1` and dispatc
 
 ## 🧪 Sample Prompts to Try
 
-| Language | Sample Prompt | Expected Topic |
-| :--- | :--- | :--- |
-| **English** | `"Explain how neural networks learn step by step."` | Machine Learning / Backpropagation |
-| **English** | `"Why is gravity important and what happens if it disappears?"` | Physics / Celestial Mechanics |
-| **हिन्दी (Hindi)** | `"एआई कैसे काम करता है? सरल शब्दों में समझाइए।"` | Artificial Intelligence Basics |
-| **हिन्दी (Hindi)** | `"मशीन लर्निंग के विभिन्न चरण क्या हैं?"` | Machine Learning Lifecycle |
-| **తెలుగు (Telugu)** | `"గురుత్వాకర్షణ శక్తి అంటే ఏమిటి? ఉదాహరణలతో వివరించండి."` | Gravitational Physics |
-| **తెలుగు (Telugu)** | `"కంప్యూటర్ డేటాను ఎలా ప్రాసెస్ చేస్తుంది?"` | Computer Architecture / CPU |
+| Language            | Sample Prompt                                                   | Expected Topic                     |
+| :------------------ | :-------------------------------------------------------------- | :--------------------------------- |
+| **English**         | `"Explain how neural networks learn step by step."`             | Machine Learning / Backpropagation |
+| **English**         | `"Why is gravity important and what happens if it disappears?"` | Physics / Celestial Mechanics      |
+| **हिन्दी (Hindi)**  | `"एआई कैसे काम करता है? सरल शब्दों में समझाइए।"`                | Artificial Intelligence Basics     |
+| **हिन्दी (Hindi)**  | `"मशीन लर्निंग के विभिन्न चरण क्या हैं?"`                       | Machine Learning Lifecycle         |
+| **తెలుగు (Telugu)** | `"గురుత్వాకర్షణ శక్తి అంటే ఏమిటి? ఉదాహరణలతో వివరించండి."`       | Gravitational Physics              |
+| **తెలుగు (Telugu)** | `"కంప్యూటర్ డేటాను ఎలా ప్రాసెస్ చేస్తుంది?"`                    | Computer Architecture / CPU        |
 
 ---
 
@@ -220,6 +221,7 @@ This repository is pre-configured with a GitHub Actions workflow:
 5. The workflow builds the static site and deploys it to `https://<username>.github.io/<repo-name>/`.
 
 > **Important Note on GitHub Pages**: GitHub Pages serves static frontend assets and does not run server-side Node.js routes (`/api/chat`). To enable AI chat functionality on production:
+>
 > - Deploy the backend API on serverless platforms such as **Vercel**, **Cloudflare Pages / Workers**, **Netlify**, or **Render**.
 > - Set `GEMINI_API_KEY` as an environment variable on your hosting provider.
 
@@ -227,13 +229,13 @@ This repository is pre-configured with a GitHub Actions workflow:
 
 ## 📜 Available Scripts
 
-| Command | Action |
-| :--- | :--- |
-| `npm run dev` | Starts Vite local development server with hot reload |
-| `npm run build` | Builds optimized production bundle |
-| `npm run preview` | Previews the production build locally |
-| `npm run lint` | Runs ESLint checks across TypeScript and React code |
-| `npm run format` | Formats all files using Prettier |
+| Command           | Action                                               |
+| :---------------- | :--------------------------------------------------- |
+| `npm run dev`     | Starts Vite local development server with hot reload |
+| `npm run build`   | Builds optimized production bundle                   |
+| `npm run preview` | Previews the production build locally                |
+| `npm run lint`    | Runs ESLint checks across TypeScript and React code  |
+| `npm run format`  | Formats all files using Prettier                     |
 
 ---
 

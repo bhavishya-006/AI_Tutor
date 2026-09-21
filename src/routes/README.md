@@ -29,6 +29,7 @@ It is designed to feel like a friendly educational assistant that explains conce
 ## Screenshots
 
 Add screenshots here once you have them:
+
 - Home chat interface
 - Thread history view
 - Settings/customization panel
@@ -53,3 +54,4 @@ mavericktutor-main/
 ├── .env.example
 ├── README.md
 └── ...
+```

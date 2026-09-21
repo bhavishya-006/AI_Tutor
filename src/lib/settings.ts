@@ -27,8 +27,7 @@ export const DEFAULT_SETTINGS: Settings = {
   chatBackground: "#fcfbff",
   position: "bottom-right",
   theme: "system",
-  welcomeMessage:
-    "Hi! Ask me anything about AI, ML, or science — in English, हिन्दी, or తెలుగు.",
+  welcomeMessage: "Hi! Ask me anything about AI, ML, or science — in English, हिन्दी, or తెలుగు.",
   triggerDelaySec: 0,
   mode: "ai",
   pageTargeting: "",

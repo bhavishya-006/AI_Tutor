@@ -6,12 +6,15 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Maverick Tutor" },
-      { name: "description", content: "A multilingual AI tutor that explains AI, ML, and science in English, Hindi, and Telugu." },
+      {
+        name: "description",
+        content:
+          "A multilingual AI tutor that explains AI, ML, and science in English, Hindi, and Telugu.",
+      },
     ],
   }),
   component: IndexRedirect,
   ssr: false,
-
 });
 
 function IndexRedirect() {

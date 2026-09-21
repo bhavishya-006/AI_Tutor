@@ -74,14 +74,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Maverick Tutor" },
-      { name: "description", content: "Maverick Tutor — a multilingual AI chatbox for learning AI, ML, and science in English, Hindi, and Telugu." },
+      {
+        name: "description",
+        content:
+          "Maverick Tutor — a multilingual AI chatbox for learning AI, ML, and science in English, Hindi, and Telugu.",
+      },
       { name: "author", content: "Maverick Tutor" },
       { property: "og:title", content: "Maverick Tutor" },
-      { property: "og:description", content: "Multilingual AI tutor chatbox — English, हिन्दी, తెలుగు." },
+      {
+        property: "og:description",
+        content: "Multilingual AI tutor chatbox — English, हिन्दी, తెలుగు.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: "Maverick Tutor" },
-      { name: "twitter:description", content: "Multilingual AI tutor chatbox — English, हिन्दी, తెలుగు." },
+      {
+        name: "twitter:description",
+        content: "Multilingual AI tutor chatbox — English, हिन्दी, తెలుగు.",
+      },
     ],
     links: [
       {
@@ -127,4 +137,3 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
-

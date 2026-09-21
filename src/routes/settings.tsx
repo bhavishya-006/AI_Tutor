@@ -21,7 +21,15 @@ export const Route = createFileRoute("/settings")({
   ssr: false,
 });
 
-function Section({ title, description, children }: { title: string; description?: string; children: React.ReactNode }) {
+function Section({
+  title,
+  description,
+  children,
+}: {
+  title: string;
+  description?: string;
+  children: React.ReactNode;
+}) {
   return (
     <section className="rounded-2xl border border-border bg-card p-6 shadow-sm">
       <h2 className="text-base font-semibold">{title}</h2>
@@ -31,7 +39,15 @@ function Section({ title, description, children }: { title: string; description?
   );
 }
 
-function Field({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
+function Field({
+  label,
+  hint,
+  children,
+}: {
+  label: string;
+  hint?: string;
+  children: React.ReactNode;
+}) {
   return (
     <label className="block">
       <span className="text-sm font-medium">{label}</span>
@@ -82,7 +98,10 @@ function SettingsPage() {
     <div className="min-h-screen bg-background">
       <div className="mx-auto max-w-3xl px-4 py-10">
         <div className="mb-8 flex items-center justify-between">
-          <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+          >
             <ArrowLeft className="h-4 w-4" /> Back to chat
           </Link>
           <div className="flex items-center gap-2">
@@ -104,7 +123,10 @@ function SettingsPage() {
         <h1 className="mb-6 text-3xl font-semibold tracking-tight">Settings</h1>
 
         <div className="space-y-6">
-          <Section title="Appearance & Customization" description="Colors, branding, avatar and position.">
+          <Section
+            title="Appearance & Customization"
+            description="Colors, branding, avatar and position."
+          >
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Field label="Display name">
                 <input
@@ -171,7 +193,11 @@ function SettingsPage() {
               <div className="flex items-center gap-4">
                 {s.avatarDataUrl ? (
                   <div className="relative">
-                    <img src={s.avatarDataUrl} alt="" className="h-16 w-16 rounded-xl object-cover" />
+                    <img
+                      src={s.avatarDataUrl}
+                      alt=""
+                      className="h-16 w-16 rounded-xl object-cover"
+                    />
                     <button
                       onClick={() => update("avatarDataUrl", null)}
                       className="absolute -right-1 -top-1 rounded-full bg-destructive p-0.5 text-destructive-foreground"
@@ -205,7 +231,10 @@ function SettingsPage() {
             </Field>
           </Section>
 
-          <Section title="Behavior & Interactions" description="Welcome message and trigger conditions.">
+          <Section
+            title="Behavior & Interactions"
+            description="Welcome message and trigger conditions."
+          >
             <Field label="Welcome message">
               <textarea
                 className={inputCls + " min-h-[80px] resize-y"}
@@ -224,7 +253,10 @@ function SettingsPage() {
             </Field>
           </Section>
 
-          <Section title="Functionality & Support" description="AI vs. human routing and page targeting.">
+          <Section
+            title="Functionality & Support"
+            description="AI vs. human routing and page targeting."
+          >
             <Field label="Mode">
               <div className="grid grid-cols-2 gap-2">
                 {(["ai", "human"] as const).map((m) => (
@@ -252,7 +284,10 @@ function SettingsPage() {
             </Field>
           </Section>
 
-          <Section title="Contact Channels" description="Alternative ways for visitors to reach you.">
+          <Section
+            title="Contact Channels"
+            description="Alternative ways for visitors to reach you."
+          >
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Field label="Email">
                 <input

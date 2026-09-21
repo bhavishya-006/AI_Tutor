@@ -3,7 +3,20 @@ import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
 import { useEffect, useMemo, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { Plus, Send, Trash2, MessageSquare, Square, History, Settings as SettingsIcon, Mail, Phone, Link2, Sun, Moon } from "lucide-react";
+import {
+  Plus,
+  Send,
+  Trash2,
+  MessageSquare,
+  Square,
+  History,
+  Settings as SettingsIcon,
+  Mail,
+  Phone,
+  Link2,
+  Sun,
+  Moon,
+} from "lucide-react";
 import { setTheme } from "@/lib/settings";
 import {
   deleteThread,
@@ -18,17 +31,18 @@ import botLogo from "@/assets/bot-logo.png";
 import { cn } from "@/lib/utils";
 import { useSettings } from "@/hooks/use-settings";
 
-
 export const Route = createFileRoute("/$threadId")({
   head: () => ({
     meta: [
       { title: "Maverick Tutor" },
-      { name: "description", content: "Chat with a multilingual AI tutor in English, Hindi, or Telugu." },
+      {
+        name: "description",
+        content: "Chat with a multilingual AI tutor in English, Hindi, or Telugu.",
+      },
     ],
   }),
   component: ChatPage,
   ssr: false,
-
 });
 
 function ChatPage() {
@@ -42,15 +56,11 @@ function ChatWindow({ threadId }: { threadId: string }) {
   const [threads, setThreads] = useState<Thread[]>(() => loadThreads());
   const avatar = settings.avatarDataUrl || botLogo;
 
-
   const initialMessages = useMemo<UIMessage[]>(() => {
     return getThread(threadId)?.messages ?? [];
   }, [threadId]);
 
-  const transport = useMemo(
-    () => new DefaultChatTransport({ api: "/api/chat" }),
-    [],
-  );
+  const transport = useMemo(() => new DefaultChatTransport({ api: "/api/chat" }), []);
 
   const { messages, sendMessage, status, stop, error } = useChat({
     id: threadId,
@@ -115,7 +125,13 @@ function ChatWindow({ threadId }: { threadId: string }) {
       {/* Sidebar */}
       <aside className="hidden w-72 shrink-0 flex-col border-r border-border bg-sidebar md:flex">
         <div className="flex items-center gap-3 px-4 py-4 border-b border-border">
-          <img src={avatar} alt="" width={36} height={36} className="h-9 w-9 rounded-lg object-cover" />
+          <img
+            src={avatar}
+            alt=""
+            width={36}
+            height={36}
+            className="h-9 w-9 rounded-lg object-cover"
+          />
           <div className="leading-tight">
             <div className="font-semibold text-sm">{settings.displayName}</div>
             <div className="text-xs text-muted-foreground">EN · हिन्दी · తెలుగు</div>
@@ -191,27 +207,43 @@ function ChatWindow({ threadId }: { threadId: string }) {
         </div>
       </aside>
 
-
       {/* Main */}
       <main className="flex flex-1 flex-col">
         <header className="flex items-center justify-between border-b border-border px-4 py-3 md:hidden">
           <div className="flex items-center gap-2">
-            <img src={avatar} alt="" width={28} height={28} className="h-7 w-7 rounded-md object-cover" />
+            <img
+              src={avatar}
+              alt=""
+              width={28}
+              height={28}
+              className="h-7 w-7 rounded-md object-cover"
+            />
             <span className="font-semibold text-sm">{settings.displayName}</span>
           </div>
           <div className="flex items-center gap-1">
-            <Link to="/history" className="rounded-md p-2 text-muted-foreground hover:bg-accent" aria-label="History">
+            <Link
+              to="/history"
+              className="rounded-md p-2 text-muted-foreground hover:bg-accent"
+              aria-label="History"
+            >
               <History className="h-4 w-4" />
             </Link>
-            <Link to="/settings" className="rounded-md p-2 text-muted-foreground hover:bg-accent" aria-label="Settings">
+            <Link
+              to="/settings"
+              className="rounded-md p-2 text-muted-foreground hover:bg-accent"
+              aria-label="Settings"
+            >
               <SettingsIcon className="h-4 w-4" />
             </Link>
-            <button onClick={handleNewThread} className="rounded-md bg-primary p-2 text-primary-foreground" aria-label="New chat">
+            <button
+              onClick={handleNewThread}
+              className="rounded-md bg-primary p-2 text-primary-foreground"
+              aria-label="New chat"
+            >
               <Plus className="h-4 w-4" />
             </button>
           </div>
         </header>
-
 
         <div ref={scrollRef} className="flex-1 overflow-y-auto">
           <div className="mx-auto max-w-3xl px-4 py-8">
@@ -289,21 +321,23 @@ function ChatWindow({ threadId }: { threadId: string }) {
 }
 
 function MessageBubble({ message, avatar }: { message: UIMessage; avatar: string }) {
-  const text = message.parts
-    .map((p) => (p.type === "text" ? p.text : ""))
-    .join("");
+  const text = message.parts.map((p) => (p.type === "text" ? p.text : "")).join("");
   const isUser = message.role === "user";
   return (
     <div className={cn("flex gap-3", isUser ? "justify-end" : "justify-start")}>
       {!isUser && (
-        <img src={avatar} alt="" width={32} height={32} className="h-8 w-8 shrink-0 rounded-lg object-cover" />
+        <img
+          src={avatar}
+          alt=""
+          width={32}
+          height={32}
+          className="h-8 w-8 shrink-0 rounded-lg object-cover"
+        />
       )}
       <div
         className={cn(
           "max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed",
-          isUser
-            ? "bg-primary text-primary-foreground rounded-br-sm"
-            : "text-foreground",
+          isUser ? "bg-primary text-primary-foreground rounded-br-sm" : "text-foreground",
         )}
       >
         {isUser ? (
@@ -337,7 +371,13 @@ function EmptyState({
   const hasContact = settings.contactEmail || settings.contactPhone || settings.contactSocial;
   return (
     <div className="flex flex-col items-center text-center py-12">
-      <img src={avatar} alt="" width={96} height={96} className="h-24 w-24 rounded-2xl object-cover mb-4" />
+      <img
+        src={avatar}
+        alt=""
+        width={96}
+        height={96}
+        className="h-24 w-24 rounded-2xl object-cover mb-4"
+      />
       <h1 className="text-2xl font-semibold tracking-tight">{settings.displayName}</h1>
       <p className="mt-3 max-w-md text-sm text-muted-foreground whitespace-pre-wrap">
         {settings.welcomeMessage}
@@ -365,17 +405,28 @@ function EmptyState({
           </div>
           <div className="mt-3 flex flex-wrap gap-3 text-sm">
             {settings.contactEmail && (
-              <a href={`mailto:${settings.contactEmail}`} className="inline-flex items-center gap-1.5 text-foreground hover:text-primary">
+              <a
+                href={`mailto:${settings.contactEmail}`}
+                className="inline-flex items-center gap-1.5 text-foreground hover:text-primary"
+              >
                 <Mail className="h-4 w-4" /> {settings.contactEmail}
               </a>
             )}
             {settings.contactPhone && (
-              <a href={`tel:${settings.contactPhone}`} className="inline-flex items-center gap-1.5 text-foreground hover:text-primary">
+              <a
+                href={`tel:${settings.contactPhone}`}
+                className="inline-flex items-center gap-1.5 text-foreground hover:text-primary"
+              >
                 <Phone className="h-4 w-4" /> {settings.contactPhone}
               </a>
             )}
             {settings.contactSocial && (
-              <a href={settings.contactSocial} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-foreground hover:text-primary">
+              <a
+                href={settings.contactSocial}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 text-foreground hover:text-primary"
+              >
                 <Link2 className="h-4 w-4" /> Social
               </a>
             )}
@@ -385,4 +436,3 @@ function EmptyState({
     </div>
   );
 }
-
