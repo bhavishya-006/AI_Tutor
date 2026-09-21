@@ -28,17 +28,16 @@ export const Route = createFileRoute("/api/chat")({
         const key = process.env.GEMINI_API_KEY?.trim();
         if (
           !key ||
-          key.startsWith("AQ.") ||
           key === "your_key_here" ||
           key === "your_gemini_api_key_here"
         ) {
           return new Response(
-            "Missing or invalid GEMINI_API_KEY. Please get a free API key from Google AI Studio (https://aistudio.google.com/) and configure GEMINI_API_KEY in your .env file.",
+            "Missing GEMINI_API_KEY. Please configure your API key in the .env file.",
             { status: 400 },
           );
         }
 
-        const modelName = process.env.GEMINI_MODEL || "gemini-1.5-flash";
+        const modelName = process.env.GEMINI_MODEL || "gemini-2.5-flash";
         const gateway = createGeminiProvider(key);
         try {
           const result = streamText({
