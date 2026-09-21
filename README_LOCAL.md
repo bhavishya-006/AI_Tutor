@@ -1,19 +1,22 @@
-# Run Maverick Tutor locally
+# Run Maverick Tutor Locally
 
-1. Install Node.js LTS.
-2. In this project folder run:
+1. Install Node.js (v20+ recommended).
+2. Install dependencies:
    ```bash
    npm install
    ```
-3. Copy `.env.example` to `.env`.
-4. Put your own Gemini API key in `.env`:
-   ```env
-   GEMINI_API_KEY=your_key_here
-   ```
-5. Start the app:
+3. Copy `.env.example` to `.env`:
    ```bash
-   npm run dev -- --port 4000
+   cp .env.example .env
    ```
-6. Open the localhost URL shown by Vite.
+4. Insert your Gemini API key in `.env`:
+   ```env
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
+5. Start the local development server:
+   ```bash
+   npm run dev
+   ```
+6. Open `http://localhost:5173` (or the port indicated in your terminal) in your browser.
 
-The chat API uses Google's OpenAI-compatible Gemini endpoint directly; it no longer requires `LOVABLE_API_KEY`.
+> **Note:** The chat API connects directly to Google's OpenAI-compatible Gemini endpoint (`https://generativelanguage.googleapis.com/v1beta/openai/`).
